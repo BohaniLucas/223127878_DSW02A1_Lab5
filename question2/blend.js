@@ -1,4 +1,20 @@
+const divSlider = document.createElement("input");
+divSlider.type = "range";
+divSlider.id="SizeSlider";
 
+
+const divSliderText = document.createElement("p");
+
+divSliderText.textContent = "SIZE OF THE DISPLAY";
+
+const divSliderContainer = document.createElement("div");
+
+divSliderContainer.id = "divSliderID";
+divSliderContainer.style.display = "flex";
+
+
+divSliderContainer.appendChild(divSliderText);
+divSliderContainer.appendChild(divSlider);
 
 const div = document.createElement("div"); //This div I will use it to package the button and the h4(GO)
 
@@ -37,6 +53,8 @@ displayContainer.style.position ="relative";
 
 document.body.appendChild(displayContainer);
 
+document.body.insertBefore(divSliderContainer,displayContainer);
+
 const colors = ["black" ,"red","blue","green"]; //This Array will contain the list of the colors
 
 const selectColor = document.createElement("select");
@@ -46,9 +64,54 @@ selectColor.style.margin="10px";
 selectColor.style.padding = "2px";
 
 
+const divSlideSizeContainer = document.createElement("div");
+
+divSlideSizeContainer.id = "sizeSlide";
+divSlideSizeContainer.style.display = "flex";
+// div.style.flexDirection = "column";
+
+const sizeP = document.createElement("p");
+
+sizeP.textContent = "LETTER SIZE";
+
+const sizeSlider = document.createElement("input");
+
+sizeSlider.id ="sizeAdjusting";
+sizeSlider.type ="range";
+sizeSlider.id="sizeAd"
+
+divSlideSizeContainer.appendChild(sizeP);
+divSlideSizeContainer.appendChild(sizeSlider);
+
+document.body.insertBefore(divSlideSizeContainer,displayContainer);
+
 const theFont = document.getElementById("font");
 
 const parent = theFont.parentNode; //I'm getting the parent element of the font to insert the dropdown for colors
+
+const divLetterSpacing = document.createElement("div");
+
+divLetterSpacing.id ="letterSpacingDiv";
+
+divLetterSpacing.style.display="flex";
+
+// divLetterSpacing.style.flexDirection="column";
+
+const letterSpacing = document.createElement("input");
+
+letterSpacing.type = "range";
+
+letterSpacing.id="spaceInput";
+
+const pSpacing  = document.createElement("p");
+
+pSpacing.textContent = "Letter Spacing";
+
+divLetterSpacing.appendChild(pSpacing);
+
+divLetterSpacing.appendChild(letterSpacing);
+
+document.body.insertBefore(divLetterSpacing,displayContainer);
 
 //I will throup the colors and then append them to the dropdown
 for(let i = 0 ; i < colors.length ; i++){
@@ -233,6 +296,79 @@ blendButton.addEventListener("click" , ()=>{
     else if(lastChecked === "reverse"){
         reverse(word,font , color);
     }
+
+})
+
+document.getElementById("SizeSlider").addEventListener("input" , (e)=>{
+
+    const displayContainer = document.getElementById("letters-container");
+
+    displayContainer.style.height = 200+ "px";
+
+    displayContainer.style.width = 500 +"px"
+
+    const theValue = e.target.value;
+
+    console.log(theValue);
+
+    
+    let lookingForTheHeight = displayContainer.style.height.split("px");
+
+    let heightPx = lookingForTheHeight[0];
+
+    console.log(heightPx);
+
+    console.log(( theValue/100) + "px" , "this is the pix");
+
+    displayContainer.style.height =  heightPx + (theValue + "px");
+
+    let lookingForTheWidth = displayContainer.style.width.split("px");
+
+    let widthPx = lookingForTheWidth[0];
+
+    displayContainer.style.width = widthPx + theValue + "px";
+    
+})
+
+document.getElementById("sizeAd").addEventListener("input" , (e)=>{
+
+    let value = e.target.value;
+
+    console.log(value);
+
+    const eachSpan = displayContainer.querySelectorAll("span");
+
+    console.log(eachSpan);
+
+    for(let i = 0; i < eachSpan.length ; i++){
+
+        let each = eachSpan[i];
+
+        each.style.fontSize = value + "px";
+    }
+    
+})
+
+document.getElementById("spaceInput").addEventListener("input" , (e)=>{
+
+    let value = e.target.value;
+
+    console.log(value);
+
+    const eachSpan = displayContainer.querySelectorAll("span");
+
+    console.log(eachSpan);
+
+    for(let i = 0; i < eachSpan.length ; i++){
+
+        let each = eachSpan[i];
+
+
+        each.style.letterSpacing = value + "px";
+
+        console.log(each.style.letterSpacing ,"This is the letter spacing");
+    }
+
 
 })
 

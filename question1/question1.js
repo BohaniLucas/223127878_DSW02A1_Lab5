@@ -146,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         { name: "W108/W109", make: "MERCEDES", image: "mercVintage.jpg", type: "CARS" },//MERC
 
+        { name: "Spider (Duetto)", make: "ALFA ROMEO", image: "alfaRomeo.jpg", type: "CARS" },//ALFA ROMEO
+
+        { name: "250 GT California Spider", make: "FERRARI", image: "ferrari.jpg", type: "CARS" },//FERRARI
     
     ];
 
@@ -211,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const value = list.value;
 
         if (currentCar.make === value) { 
-            
+
             correctGuesses++;
 
             correct.textContent = correctGuesses;
