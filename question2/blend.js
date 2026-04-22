@@ -48,6 +48,8 @@ displayContainer.id= "letters-container";
 displayContainer.style.border = "2px solid orange";
 displayContainer.style.width = "500px";
 displayContainer.style.height = "200px";
+displayContainer.style.maxHeight = "400px";
+displayContainer.style.maxWidth = "1000px";
 displayContainer.style.margin = "10px";
 displayContainer.style.position ="relative"; 
 
